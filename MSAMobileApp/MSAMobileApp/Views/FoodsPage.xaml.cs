@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MSAMobileApp.Views {
-    public partial class SecondPage : ContentPage {
-        public SecondPage() {
+    public partial class FoodsPage : ContentPage {
+        public FoodsPage() {
             InitializeComponent();
         }
     }
