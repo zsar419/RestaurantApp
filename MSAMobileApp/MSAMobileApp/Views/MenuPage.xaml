@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MSAMobileApp.Views.MenuPage" xmlns:pages="clr-namespace:MSAMobileApp.Views;assembly=MSAMobileApp">
+  <MasterDetailPage.Master>
+    <ContentPage Title="Menu">
+      <ContentPage.Content>
+        <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="20, 50">
+          <Label Text="Menu" XAlign="Center" TextColor="Black" FontSize="25"/>
+          <Button Text="Home" TextColor="White" BackgroundColor="Green" Clicked="GoHomePage"/>
+          <Button Text="Hot Deals" TextColor="White" BackgroundColor="Red" Clicked="GoSecondPage"/>
+          <Button Text="View Menu" TextColor="White" BackgroundColor="Red" Clicked="GoSecondPage"/>
+          <Button Text="Book a Reservation" TextColor="White" BackgroundColor="Red" Clicked="GoSecondPage"/>
+          <Button Text="Login | Register" TextColor="White" BackgroundColor="Red" Clicked="GoAuthPage"/>
+          <Button Text="Contact Us" TextColor="White" BackgroundColor="Red"/>
+          <Button Text="Settings" TextColor="White" BackgroundColor="Red"/>
+        </StackLayout>
+      </ContentPage.Content>
+    </ContentPage>
+  </MasterDetailPage.Master>
+  <MasterDetailPage.Detail>
+    <pages:HomePage/>
+  </MasterDetailPage.Detail>
+</MasterDetailPage>

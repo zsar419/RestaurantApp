@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MSAMobileApp.Views.RegistrationPage"
+             Title="Register">
+  <ContentPage.Content>
+    <StackLayout VerticalOptions="Center" Padding="30">
+      <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+      
+      <Label Text="Email"/>
+      <Entry Text="{Binding Path=Username}" x:Name="usernameEntry" />
+
+      <Label Text="Password" />
+      <Entry Text="{Binding Path=Password}" IsPassword="true" x:Name="passwordEntry" />
+      <Label Text="Comfirm Password" />
+      <Entry Text="{Binding Path=Password}" IsPassword="true" x:Name="passwordEntry2" />
+
+      <Button Text="Register" Clicked="GoRegister"/>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
