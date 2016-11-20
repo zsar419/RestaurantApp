@@ -12,6 +12,9 @@ namespace MSAMobileApp.Views {
             InitializeComponent();
         }
         private void GoLogin(object sender, EventArgs e) {
+            LoadIndicator.IsRunning = true;
+            // Perform await function call to id
+            // LoadIndicator.IsRunning = false;
         }
     }
 }

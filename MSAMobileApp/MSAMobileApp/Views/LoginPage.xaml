@@ -4,7 +4,9 @@
              x:Class="MSAMobileApp.Views.LoginPage"
              Title="Login">
   <ContentPage.Content>
-    <StackLayout VerticalOptions="Center" Padding="30">
+    <StackLayout VerticalOptions="Center" Padding="20">
+      <Label Text="Login" XAlign="Center" FontSize="20"/>
+
       <Label Text="Username" />
       <Entry Text="{Binding Path=Username}" x:Name="usernameEntry" />
 
@@ -12,6 +14,7 @@
       <Entry Text="{Binding Path=Password}" IsPassword="true" x:Name="passwordEntry" />
 
       <Button Text="Login" Clicked="GoLogin"/>
+      <ActivityIndicator Color="Red" IsRunning="False" x:Name ="LoadIndicator"/>
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>
