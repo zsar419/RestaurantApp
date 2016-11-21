@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using MSAMobileApp.Models;
 using Xamarin.Forms;
 
 namespace MSAMobileApp.Views {
@@ -11,10 +11,19 @@ namespace MSAMobileApp.Views {
         public LoginPage() {
             InitializeComponent();
         }
-        private void GoLogin(object sender, EventArgs e) {
+
+        private async void GoLogin(object sender, EventArgs e) {
             LoadIndicator.IsRunning = true;
-            // Perform await function call to id
-            // LoadIndicator.IsRunning = false;
+
+            List<User> users = await AzureManager.AzureManagerInstance.GetUsers();
+            if (users.Where(s => s.Email == emailEntry.Text && s.Password == passwordEntry.Text).Count() > 0) {
+                await DisplayAlert("Login Succesfull", "Successfilly logged in!", "OK");
+                MenuPage.GoHomeAfterLogin(users.Where(s => s.Email == emailEntry.Text && s.Password == passwordEntry.Text).ToArray()[0]);
+            } else {
+                await DisplayAlert("Login Failed", "Please login with valid credentials", "OK");
+            }
+            LoadIndicator.IsRunning = false;
         }
+
     }
 }

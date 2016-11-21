@@ -8,9 +8,11 @@ using Xamarin.Forms;
 
 namespace MSAMobileApp {
     public class App : Application {
+        public static MenuPage RootPage;
+
         public App() {
             // The root page of your application
-            MainPage = new MenuPage();
+            MainPage = MenuPage.MenuPageInstance;
         }
 
         protected override void OnStart() {

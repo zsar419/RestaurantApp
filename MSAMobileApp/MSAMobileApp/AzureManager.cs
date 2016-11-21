@@ -31,10 +31,21 @@ namespace MSAMobileApp {
             }
         }
 
+        // GET
         public async Task<List<User>> GetUsers() {
             return await this.userTable.ToListAsync();
         }
 
+        // POST
+        public async Task AddUser(User user) {
+            await this.userTable.InsertAsync(user);
+        }
+
+
+        // Example query
+        public async Task<List<User>> GetVaidPasswordUsers() {
+            return await userTable.Where(s => s.Password != "123").ToListAsync();
+        }
 
     }
 }

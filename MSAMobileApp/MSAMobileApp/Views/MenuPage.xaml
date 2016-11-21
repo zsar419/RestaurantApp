@@ -12,6 +12,8 @@
           <Button Text="Login | Register" x:Name="AuthBtn" TextColor="White" BackgroundColor="Red"/>
           <Button Text="Contact Us" x:Name="ContactBtn" TextColor="White" BackgroundColor="Red"/>
           <Button Text="Settings" x:Name="SettingsBtn" TextColor="White" BackgroundColor="Red"/>
+
+          <Label Text="Welcome Guest" x:Name="currentLbl" XAlign="Center" TextColor="Red" FontSize="15"/>
         </StackLayout>
       </ContentPage.Content>
     </ContentPage>

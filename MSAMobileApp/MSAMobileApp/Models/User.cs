@@ -6,7 +6,22 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace MSAMobileApp.Models {
-    class User {
+    public class User {
+        private static User current;
+
+        public static User CurrentUserInstance {
+            get {
+                if (current == null) {
+                    current = new User();
+                }
+                return current;
+            }
+        }
+
+        public void Logout() {
+            current = null;
+        }
+
         [JsonProperty(PropertyName = "Id")]
         public string ID { get; set; }
 
@@ -28,8 +43,9 @@ namespace MSAMobileApp.Models {
         [JsonProperty(PropertyName = "address")]
         public string Address { get; set; }
 
-        [JsonProperty(PropertyName = "createdAt")]
+        [JsonIgnore]
         public DateTime Date { get; set; }
+
 
     }
 }
