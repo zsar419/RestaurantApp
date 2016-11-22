@@ -16,7 +16,7 @@ namespace MSAMobileApp.Views {
             LoadIndicator.IsRunning = true;
 
             List<User> users = await AzureManager.AzureManagerInstance.GetUsers();
-            if (users.Where(s => s.Email == emailEntry.Text && s.Password == passwordEntry.Text).Count() > 0) {
+            if (users.Where(s => s.Email == emailEntry.Text.ToLower() && s.Password == passwordEntry.Text).Count() > 0) {
                 await DisplayAlert("Login Succesfull", "Successfilly logged in!", "OK");
                 MenuPage.GoHomeAfterLogin(users.Where(s => s.Email == emailEntry.Text && s.Password == passwordEntry.Text).ToArray()[0]);
             } else {

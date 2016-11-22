@@ -20,7 +20,7 @@ namespace MSAMobileApp.Views {
             // Perform await function call to id
             User newUser = new User() {
                 Name = usernameEntry.Text,
-                Email = emailEntry.Text,
+                Email = emailEntry.Text.ToLower(),
                 Password = passwordEntry.Text,
                 Photo = phoneEntry.Text,
                 Phone = phoneEntry.Text,

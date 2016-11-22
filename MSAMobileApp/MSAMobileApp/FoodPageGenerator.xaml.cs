@@ -1,56 +1,26 @@
 ﻿using MSAMobileApp.Models;
-using Plugin.Geolocator;
+using MSAMobileApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
+
 using Xamarin.Forms;
 
-namespace MSAMobileApp.Views {
-    public partial class ReccomendedPage : ContentPage {
+namespace MSAMobileApp {
+    public partial class FoodPageGenerator : ContentPage {
+        // NOT USED BECAUSE CONTENT IS NON_STATIC
 
-        public ReccomendedPage() {
+        public FoodPageGenerator(List<Food> FoodDB) {
             InitializeComponent();
+
+            CreateLinkableCells(FoodDB);
         }
-
-        private async void GetLocationData(Object sender, EventArgs e) {
-            LoadIndicator.IsRunning = true;
-
-            try {
-                var locator = CrossGeolocator.Current;
-                locator.DesiredAccuracy = 50;
-                var pos = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
-                data.Text = $"Latitude: {pos.Latitude}\nLongitude: {pos.Longitude}";
-                // Feed data into API to load reccomendations
-                // WeatherObject.RootObject localData = await ApiManager.ApiManagerInstance.GetJsonWeatherObjectByCity("auckland");
-                WeatherObject.RootObject localData = await ApiManager.ApiManagerInstance.GetJsonWeatherObjectByCoords(pos.Latitude, pos.Longitude);
-                data.Text += $"\nCurrent weather for {localData.name} is {localData.main.temp} degrees";
-                LoadItems(localData.weather[0].icon, localData.main.temp);
-
-            } catch (Exception ex) {
-                await DisplayAlert("Failure:", $"Unable to retrieve location location, please turn on your GPS", "OK");
-            }
-            LoadIndicator.IsRunning = false;
-        }
-
-        public async void LoadItems(string icon, double temp) {
-            LoadIndicator.IsRunning = true;
-
-            List<Food> foodItems = await AzureManager.AzureManagerInstance.GetFoodItems();
-            // If raining or temp<15 --> icon conditions: https://openweathermap.org/weather-conditions
-            int type = (Int32.Parse(icon.Substring(0, 2)) > 4) || temp < 15 ? 1 : 2; // 1 = hot, 2=cold
-            CreateLinkableCells(foodItems.Where(s => s.Type == type).ToList());
-            // CreateLinkableCells(foodItems.Where(s => s.Type==type).ToList());
-
-            LoadIndicator.IsRunning = false;
-        }
-
         public void CreateLinkableCells(List<Food> FoodDB) {
             // Creating page header
             Label header = new Label {
-                Text = "Reccomended based on location",
+                Text = "Current Deals",
                 TextColor = Color.Purple,
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
                 HorizontalOptions = LayoutOptions.Center
@@ -152,6 +122,5 @@ namespace MSAMobileApp.Views {
                 }
             });
         }
-
     }
 }

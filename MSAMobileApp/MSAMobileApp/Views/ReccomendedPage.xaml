@@ -8,8 +8,8 @@
       <StackLayout Padding="0,20,0,0" Spacing="10">
         <Label Text="Reccomended for you" XAlign="Center" FontSize="16"/>
         <ActivityIndicator Color="Red" IsRunning="False" x:Name ="LoadIndicator"/>
-        <Button Text="Get Reccomendations" x:Name="reccomendButton" TextColor="Black" BackgroundColor="Yellow" Clicked="GetLocationData"/>
-        <Label Text="Location Data: " x:Name="data" FontSize="15"/>
+        <Button Text="Get Reccomendations (GPS)" x:Name="reccomendButton" TextColor="Black" BackgroundColor="Yellow" Clicked="GetLocationData"/>
+        <Label Text="" x:Name="data" XAlign="Center" FontSize="15"/>
       </StackLayout>
     </ScrollView>
   </ContentPage.Content>

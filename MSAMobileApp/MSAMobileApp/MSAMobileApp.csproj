@@ -35,11 +35,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ApiManager.cs" />
     <Compile Include="App.cs" />
     <Compile Include="AzureManager.cs" />
+    <Compile Include="FoodPageGenerator.xaml.cs">
+      <DependentUpon>FoodPageGenerator.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Food.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\WeatherObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ContactPage.xaml.cs">
       <DependentUpon>ContactPage.xaml</DependentUpon>
@@ -189,6 +194,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\FacebookLoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodPageGenerator.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
