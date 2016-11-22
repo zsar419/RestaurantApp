@@ -18,6 +18,15 @@ namespace MSAMobileApp.Models {
             }
         }
 
+        public static bool Exists() {
+            if (current != null) return true; 
+            return false;
+        }
+
+        public void Login(User newUser) {
+            current = newUser;
+        }
+
         public void Logout() {
             current = null;
         }

@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MSAMobileApp.Views.FoodsPage" Title="Food Menu">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+             x:Class="MSAMobileApp.Views.FoodsPage" Title="Full Menu">
+  <ContentPage.Content>
+    <ScrollView>
+      <StackLayout Padding="0,20,0,0" Spacing="10">
+        <ActivityIndicator Color="Red" IsRunning="False" x:Name ="LoadIndicator"/>
+      </StackLayout>
+    </ScrollView>
+  </ContentPage.Content>
 </ContentPage>

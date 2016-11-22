@@ -9,37 +9,33 @@ using MSAMobileApp.Models;
 namespace MSAMobileApp.Views {
     public partial class MenuPage : MasterDetailPage {
         private static MenuPage instance;
+        public static List<Page> pages = new List<Page>(); // Caching
 
-        Color textColor = Color.White;
-        Color backgroundColor = Color.Red;
-        Color selectedColor = Color.Green;
+        Color textColor = Color.White, backgroundColor = Color.Red, selectedColor = Color.Green;
 
         public MenuPage() {
             InitializeComponent();
+            InitializePageLinks();
 
             HomeBtn.BackgroundColor = selectedColor;
             HomeBtn.Clicked += (sender, e) => {
-                Detail = new HomePage();
+                Detail = pages[0];
                 ChangeSelection(sender as Button);
             };
 
             FoodBtn.Clicked += (sender, e) => {
-                Detail = new TabbedPage {
-                    Children = {
-                        new DealsPage(), new FoodsPage()
-                    }
-                };
+                Detail = pages[1];
                 ChangeSelection(sender as Button);
             };
 
-            BookBtn.Clicked += (sender, e) => { };
+            OrderBtn.IsEnabled = false;
+            OrderBtn.Clicked += (sender, e) => {
+                Detail = new NavigationPage(new OrderPage());
+                ChangeSelection(sender as Button);
+            };
 
             AuthBtn.Clicked += (sender, e) => {
-                Detail = new TabbedPage {
-                    Children = {
-                        new LoginPage(), new RegistrationPage()
-                    }
-                };
+                Detail = pages[2];
                 ChangeSelection(sender as Button);
             };
 
@@ -54,6 +50,7 @@ namespace MSAMobileApp.Views {
             }
         }
 
+
         private void ChangeSelection(Button selected) {
             IsPresented = false;
             foreach (Button btn in Layout.Children.Where(s => s is Button)) {
@@ -63,13 +60,26 @@ namespace MSAMobileApp.Views {
             selected.BackgroundColor = selectedColor;
         }
 
+        private void InitializePageLinks() {
+            pages.Add(new NavigationPage(new HomePage()));
+            pages.Add(new NavigationPage(new TabbedPage { Children = { new ReccomendedPage(), new DealsPage(), new FoodsPage() } }));
+            //pages.Add(new NavigationPage(new OrderPage()));
+            pages.Add(new NavigationPage(new TabbedPage { Children = { new LoginPage(), new FacebookLoginPage(), new RegistrationPage() } }));
+        }
+
+        // Navigation logging in
         public static void GoHomeAfterLogin(User user) {
+            User.CurrentUserInstance.Login(user);
             MenuPageInstance.currentLbl.Text = $"Logged in as {user.Name}";
             MenuPageInstance.currentLbl.TextColor = Color.Green;
 
-           MenuPageInstance.Detail = new HomePage();
+
+            MenuPageInstance.Detail = pages[0];
             MenuPageInstance.HomeBtn.BackgroundColor = Color.Green;
             MenuPageInstance.AuthBtn.BackgroundColor = Color.Red;
+
+            MenuPageInstance.OrderBtn.IsEnabled = true;
+
             MenuPageInstance.AuthBtn.IsEnabled = false;
             MenuPageInstance.AuthBtn.IsVisible = false;
         }
@@ -77,7 +87,19 @@ namespace MSAMobileApp.Views {
         public static void Logout() {
             MenuPageInstance.currentLbl.Text = "Welcome Guest";
             MenuPageInstance.currentLbl.TextColor = Color.Red;
+        }
 
+        public static void ChangePage(Page page, int number = 0) {
+            MenuPageInstance.Detail = page;
+            // For going from orders page (1 call) to main menu page
+            if(number >0 ) {
+                foreach (Button btn in MenuPageInstance.Layout.Children.Where(s => s is Button)) {
+                    btn.TextColor = Color.White;
+                    btn.BackgroundColor = Color.Red;
+                }
+                if (number == 1) MenuPageInstance.FoodBtn.BackgroundColor = Color.Green;
+                if (number == 2) MenuPageInstance.OrderBtn.BackgroundColor = Color.Green;
+            }
         }
 
     }

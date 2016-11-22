@@ -7,8 +7,18 @@ using Newtonsoft.Json;
 
 namespace MSAMobileApp.Models {
     //enum Category { starters, mains, desserts, drinks };
+    public class Food {
 
-    class Food {
+        [JsonIgnore]
+        public static List<Food> Cart = new List<Food>();
+        public static List<Food> CartInstance {
+            get {
+                if (Cart == null) {
+                    Cart = new List<Food>();
+                }
+                return Cart;
+            }
+        }
 
         [JsonProperty(PropertyName = "Id")]
         public string ID { get; set; }
