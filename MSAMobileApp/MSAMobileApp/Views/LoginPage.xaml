@@ -16,33 +16,6 @@
       <Button Text="Login" Clicked="GoLogin"/>
       <ActivityIndicator Color="Red" IsRunning="False" x:Name ="LoadIndicator"/>
 
-
-      <ListView x:Name="UserList" HasUnevenRows="True">
-        <ListView.ItemTemplate>
-          <DataTemplate>
-            <ViewCell>
-              <Grid>
-                <Grid.RowDefinitions>
-                  <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="50*" />
-                  <ColumnDefinition Width="50*" />
-                  <ColumnDefinition Width="50*" />
-                  <ColumnDefinition Width="50*" />
-                  <ColumnDefinition Width="50*" />
-                </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Text="{Binding Name}"/>
-                <Label Grid.Column="1" Text="{Binding Email}"/>
-                <Label Grid.Column="2" Text="{Binding Password}"/>
-                <Label Grid.Column="3" Text="{Binding Phone}"/>
-                <Label Grid.Column="4" Text="{Binding Address}"/>
-              </Grid>
-            </ViewCell>
-          </DataTemplate>
-        </ListView.ItemTemplate>
-      </ListView>
-      
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>

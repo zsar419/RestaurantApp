@@ -30,17 +30,23 @@ namespace MSAMobileApp.Views {
 
             OrderBtn.IsEnabled = false;
             OrderBtn.Clicked += (sender, e) => {
-                Detail = new NavigationPage(new OrderPage());
-                ChangeSelection(sender as Button);
-            };
-
-            AuthBtn.Clicked += (sender, e) => {
                 Detail = pages[2];
                 ChangeSelection(sender as Button);
             };
 
-            ContactBtn.Clicked += (sender, e) => { };
-            SettingsBtn.Clicked += (sender, e) => { };
+            AuthBtn.Clicked += (sender, e) => {
+                Detail = pages[3];
+                ChangeSelection(sender as Button);
+            };
+
+            ContactBtn.Clicked += (sender, e) => {
+                Detail = pages[4];
+                ChangeSelection(sender as Button);
+            };
+            SettingsBtn.Clicked += (sender, e) => {
+                Detail = pages[5];
+                ChangeSelection(sender as Button);
+            };
         }
 
         public static MenuPage MenuPageInstance{
@@ -63,8 +69,10 @@ namespace MSAMobileApp.Views {
         private void InitializePageLinks() {
             pages.Add(new NavigationPage(new HomePage()));
             pages.Add(new NavigationPage(new TabbedPage { Children = { new ReccomendedPage(), new DealsPage(), new FoodsPage() } }));
-            //pages.Add(new NavigationPage(new OrderPage()));
+            pages.Add(new NavigationPage(new OrderPage()));
             pages.Add(new NavigationPage(new TabbedPage { Children = { new LoginPage(), new FacebookLoginPage(), new RegistrationPage() } }));
+            pages.Add(new NavigationPage(new ContactPage()));
+            pages.Add(new NavigationPage(new SettingsPage()));
         }
 
         // Navigation logging in
@@ -99,6 +107,7 @@ namespace MSAMobileApp.Views {
                 }
                 if (number == 1) MenuPageInstance.FoodBtn.BackgroundColor = Color.Green;
                 if (number == 2) MenuPageInstance.OrderBtn.BackgroundColor = Color.Green;
+                if (number == 3) MenuPageInstance.AuthBtn.BackgroundColor = Color.Green;
             }
         }
 

@@ -98,7 +98,12 @@ namespace MSAMobileApp.Views {
                 if (User.CurrentUserInstance.Name != null) {
                     Food.CartInstance.Add(item);
                     await DisplayAlert("Success", $"Successfully added {item.Name} to cart", "OK");
-                } else await DisplayAlert("Failed", "Please login to place an order", "OK");
+                } else {
+                    var res = await DisplayAlert("Failed", "Please login to place an order", "Login", "Cancel");
+                    if (res) {
+                        MenuPage.ChangePage(MenuPage.pages[3], 3);
+                    }
+                }
             };
             Button toCartBtn = new Button {
                 Text = "View Cart",
@@ -109,7 +114,7 @@ namespace MSAMobileApp.Views {
                 HorizontalOptions = LayoutOptions.Fill,
             };
             toCartBtn.Clicked += (sender, e) => {
-                MenuPage.ChangePage(new NavigationPage(new OrderPage()), 2);
+                MenuPage.ChangePage(MenuPage.pages[2], 2);
             };
             Button backToMenu = new Button {
                 Text = "BACK",
@@ -119,7 +124,7 @@ namespace MSAMobileApp.Views {
                 HorizontalOptions = LayoutOptions.End,
             };
             backToMenu.Clicked += (sender, e) => {
-                MenuPage.MenuPageInstance.Detail = MenuPage.pages[1];
+                MenuPage.ChangePage(MenuPage.pages[1]);
             };
 
             return new NavigationPage(new ContentPage {

@@ -2,5 +2,25 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MSAMobileApp.Views.SettingsPage">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+  <ContentPage.Content>
+    <ScrollView>
+      <StackLayout Padding="0,20,0,0" Spacing="10">
+        <Label Text="Change Details:" HorizontalOptions="Center" />
+        <Label Text="- Fill in desired fields you wish to change -" FontSize="12" HorizontalOptions="Center" />
+
+        <Entry Text="{Binding Path=Name}" Placeholder="Name" x:Name="usernameEntry" />
+        <Entry Text="{Binding Path=Email}" Placeholder="Email" x:Name="emailEntry" />
+        <Entry Text="{Binding Path=Password}" Placeholder="Password" IsPassword="true" x:Name="passwordEntry" />
+        <Entry Text="{Binding Path=Phone}" Placeholder="Phone number" x:Name="phoneEntry" />
+        <Entry Text="{Binding Path=Address}" Placeholder="Address" x:Name="addressEntry" />
+        
+        <Button Text="Confirm" x:Name="ChangeBtn" TextColor="White" BackgroundColor="Blue"/>
+
+        <Button Text="Log Out" TextColor="Black" BackgroundColor="Red" Clicked="LogoutClicked"/>
+
+        <ActivityIndicator Color="Red" IsRunning="False" x:Name ="LoadIndicator"/>
+      </StackLayout>
+    </ScrollView>
+  </ContentPage.Content>
+
 </ContentPage>

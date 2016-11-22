@@ -10,15 +10,25 @@ using System.Threading;
 
 namespace MSAMobileApp.Views {
     public partial class OrderPage : ContentPage {
+
+        private View initialContent;
+
         public OrderPage() {
             InitializeComponent();
+            ToMenuBtn.Clicked += (sender, e) => { MenuPage.ChangePage(MenuPage.pages[1], 1); };
+            initialContent = Content;
+        }
 
+        protected override async void OnAppearing() {
             UpdateCart();
+        }
 
-            ToMenuBtn.Clicked += (sender, e) => {
-                MenuPage.ChangePage(MenuPage.pages[1], 1);
-            };
-
+        void UpdateCart() {
+            if (Food.CartInstance.Count > 0) {
+                cartInfo.Text = "Your Cart:";
+                ToMenuBtn.IsVisible = false;
+                CreateLinkableCells(Food.CartInstance);
+            } else Content = initialContent;
         }
 
         private void CreateLinkableCells(List<Food> FoodDB) {
@@ -43,8 +53,8 @@ namespace MSAMobileApp.Views {
                     if(answer) {
                         Food.CartInstance.Remove(item);
                         if (Food.CartInstance.Count == 0)
-                            MenuPage.ChangePage(new NavigationPage(new OrderPage()));
-                        else UpdateCart();
+                            MenuPage.ChangePage(new NavigationPage(new OrderPage())); // FIX THIS
+                        else OnAppearing();
                     }
                 };
                 foodDBLinks.Add(cellItem);
@@ -80,26 +90,14 @@ namespace MSAMobileApp.Views {
                 AI.IsRunning = true;
                 await AzureManager.AzureManagerInstance.PlaceOrder(newOrder);
                 await DisplayAlert("Success", "Your order has been successfully placed", "OK");
+                // foreach (var f in Food.CartInstance) Food.CartInstance.Remove(f);
                 Food.CartInstance.Clear();
                 AI.IsRunning = false;
-                MenuPage.ChangePage(new NavigationPage(new OrderPage()));
+                MenuPage.ChangePage(new NavigationPage(new OrderPage())); // FIX THIS
             };
             // Build the page.
             Content = new StackLayout { Children = { header, tableView, AI, orderButton } };
         }
-
-        private void UpdateCart() {
-            if (Food.CartInstance.Count > 0) {
-                cartInfo.Text = "Your Cart:";
-                ToMenuBtn.IsVisible = false;
-                CreateLinkableCells(Food.CartInstance);
-            } else {
-                cartInfo.Text = "Visit the shop to add items to cart";
-                ToMenuBtn.IsVisible = true;
-            }
-        }
-
-
 
     }
 }
