@@ -15,15 +15,14 @@ namespace MSAMobileApp.Views {
 
         public OrderPage() {
             InitializeComponent();
-            ToMenuBtn.Clicked += (sender, e) => { MenuPage.ChangePage(MenuPage.pages[1], 1); };
             initialContent = Content;
         }
 
-        protected override async void OnAppearing() {
-            UpdateCart();
+        private void ToMenu(object sender, EventArgs e) {
+            MenuPage.ChangePage(MenuPage.pages[1], 1);
         }
 
-        void UpdateCart() {
+        protected override async void OnAppearing() {
             if (Food.CartInstance.Count > 0) {
                 cartInfo.Text = "Your Cart:";
                 ToMenuBtn.IsVisible = false;

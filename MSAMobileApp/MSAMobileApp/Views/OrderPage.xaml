@@ -7,7 +7,7 @@
     <ScrollView>
       <StackLayout VerticalOptions="Center" Padding="30">
         <Label Text="Visit the shop to add items to cart" x:Name="cartInfo" HorizontalOptions="Center"/>
-        <Button Text="Food Menu's" x:Name="ToMenuBtn" TextColor="Black" BackgroundColor="Yellow"/>
+        <Button Text="Food Menu's" x:Name="ToMenuBtn" TextColor="Black" BackgroundColor="Yellow" Clicked="ToMenu"/>
       </StackLayout>
     </ScrollView>
   </ContentPage.Content>

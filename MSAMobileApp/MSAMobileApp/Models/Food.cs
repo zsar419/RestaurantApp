@@ -13,11 +13,14 @@ namespace MSAMobileApp.Models {
         public static List<Food> Cart = new List<Food>();
         public static List<Food> CartInstance {
             get {
-                if (Cart == null) {
-                    Cart = new List<Food>();
-                }
+                if (Cart == null) { Cart = new List<Food>(); }
                 return Cart;
             }
+        }
+
+        public static void ClearCart() {
+            //foreach (Food item in Cart) Cart.Remove(item);
+            Cart = null;
         }
 
         [JsonProperty(PropertyName = "Id")]

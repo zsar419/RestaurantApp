@@ -10,11 +10,11 @@
 
         <Entry Text="{Binding Path=Name}" Placeholder="Name" x:Name="usernameEntry" />
         <Entry Text="{Binding Path=Email}" Placeholder="Email" x:Name="emailEntry" />
-        <Entry Text="{Binding Path=Password}" Placeholder="Password" IsPassword="true" x:Name="passwordEntry" />
+        <Entry Text="{Binding Path=Password}" Placeholder="New Password" IsPassword="true" x:Name="passwordEntry" />
         <Entry Text="{Binding Path=Phone}" Placeholder="Phone number" x:Name="phoneEntry" />
         <Entry Text="{Binding Path=Address}" Placeholder="Address" x:Name="addressEntry" />
         
-        <Button Text="Confirm" x:Name="ChangeBtn" TextColor="White" BackgroundColor="Blue"/>
+        <Button Text="Confirm" TextColor="White" BackgroundColor="Blue" Clicked="Change"/>
 
         <Button Text="Log Out" TextColor="Black" BackgroundColor="Red" Clicked="LogoutClicked"/>
 

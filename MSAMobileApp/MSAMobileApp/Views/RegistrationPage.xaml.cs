@@ -36,7 +36,6 @@ namespace MSAMobileApp.Views {
                 LoadIndicator.IsRunning = false;
                 return;
             }
-            // Check if user exists in database (synchronously)
 
             if (newUser.Password == null || newUser.Name == null || newUser.Email == null) {
                 await DisplayAlert("Incomplete Information", "Please complete the required* fields", "OK");

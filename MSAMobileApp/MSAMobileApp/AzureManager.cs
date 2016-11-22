@@ -44,6 +44,16 @@ namespace MSAMobileApp {
             await this.userTable.InsertAsync(user);
         }
 
+        // PUT Users - update current user information in database with matching ID
+        public async Task UpdateUser(User user) {
+            await this.userTable.UpdateAsync(user);
+        }
+
+        // Delete users - remove user from database with matching ID
+        public async Task DeleteUser(User user) {
+            await this.userTable.DeleteAsync(user);
+        }
+
         // GET food items
         public async Task<List<Food>> GetFoodItems() {
             return await this.foodTable.ToListAsync();

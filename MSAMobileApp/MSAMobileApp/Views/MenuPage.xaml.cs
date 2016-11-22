@@ -87,14 +87,19 @@ namespace MSAMobileApp.Views {
             MenuPageInstance.AuthBtn.BackgroundColor = Color.Red;
 
             MenuPageInstance.OrderBtn.IsEnabled = true;
-
-            MenuPageInstance.AuthBtn.IsEnabled = false;
             MenuPageInstance.AuthBtn.IsVisible = false;
+            MenuPageInstance.SettingsBtn.BackgroundColor = Color.Red;
         }
 
         public static void Logout() {
+            User.CurrentUserInstance.Logout();
             MenuPageInstance.currentLbl.Text = "Welcome Guest";
             MenuPageInstance.currentLbl.TextColor = Color.Red;
+            // foreach (Food f in Food.CartInstance) Food.CartInstance.Remove(f);   
+            Food.ClearCart();
+            //Food.CartInstance.Clear();  // FIX ERROR (collection modified - login -> put in cart -> logout -> view cart .. should be empty..) use above^
+            MenuPageInstance.OrderBtn.IsEnabled = false;
+            MenuPageInstance.AuthBtn.IsVisible = true;
         }
 
         public static void ChangePage(Page page, int number = 0) {
