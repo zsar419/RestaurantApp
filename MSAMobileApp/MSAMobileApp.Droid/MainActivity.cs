@@ -18,7 +18,7 @@ namespace MSAMobileApp.Droid {
 
             base.OnCreate(bundle);
 
-            //global::Xamarin.FormsMaps.Init(this, bundle);
+            global::Xamarin.FormsMaps.Init(this, bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
             // Initialize the authenticator before loading the app.
             App.Init((IAuthenticate)this);

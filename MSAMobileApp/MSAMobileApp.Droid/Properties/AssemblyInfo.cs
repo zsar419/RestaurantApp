@@ -35,8 +35,7 @@ using Android.App;
 
 
 // Ignore restricted locatoin access on devices
-/*
+
 [assembly: UsesFeature("android.hardware.location", Required = false)]
 [assembly: UsesFeature("android.hardware.location.gps", Required = false)]
 [assembly: UsesFeature("android.hardware.location.network", Required = false)]
-*/

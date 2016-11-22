@@ -1,11 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MSAMobileApp.Views.ContactPage">
+             x:Class="MSAMobileApp.Views.ContactPage"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps">
+  
   <ContentPage.Content>
     <ScrollView>
-      <StackLayout Padding="0,20,0,0" Spacing="10">
+      <StackLayout x:Name="sl" VerticalOptions="StartAndExpand" Padding="30">
+        <maps:Map WidthRequest="320" HeightRequest="500"
+            x:Name="MyMap"
+            IsShowingUser="true"
+            MapType="Street"
+        />
+        <Label x:Name="data" XAlign="Center" FontSize="15"/>
+        <Button Text="Meet Us" x:Name="getLocation" TextColor="Black" BackgroundColor="Yellow" Clicked="GetLocationData"/>
         <ActivityIndicator Color="Red" IsRunning="False" x:Name ="LoadIndicator"/>
+        <Label Text="Fabrikam Foods" Margin="20, 0" FontSize="18"/>
+        <Label Text="Address: 2 Queens Parade, Auckland" Margin="20, 0" FontSize="15"/>
+        <Label Text="Phone: +64 21 028 97979" Margin="20, 0" FontSize="15"/>
+        <Label Text="Website: www.fabrikamfood.com" Margin="20, 0" FontSize="15"/>
+
       </StackLayout>
     </ScrollView>
   </ContentPage.Content>
