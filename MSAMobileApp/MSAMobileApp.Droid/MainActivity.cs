@@ -8,6 +8,8 @@ using Android.Widget;
 using Android.OS;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Threading.Tasks;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 
 namespace MSAMobileApp.Droid {
     [Activity(Label = "MSAMobileApp", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -25,6 +27,9 @@ namespace MSAMobileApp.Droid {
             LoadApplication(new App());
         }
 
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults) {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
 
         public async Task<bool> Authenticate() {
             MobileServiceUser user; // Define a authenticated user - can use this for further 

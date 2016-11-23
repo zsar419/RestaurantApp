@@ -56,7 +56,6 @@ namespace MSAMobileApp.Views {
             }
         }
 
-
         private void ChangeSelection(Button selected) {
             IsPresented = false;
             foreach (Button btn in Layout.Children.Where(s => s is Button)) {
@@ -68,7 +67,7 @@ namespace MSAMobileApp.Views {
 
         private void InitializePageLinks() {
             pages.Add(new NavigationPage(new HomePage()));
-            pages.Add(new NavigationPage(new TabbedPage { Children = { new ReccomendedPage(), new DealsPage(), new FoodsPage() } }));
+            pages.Add(new NavigationPage(new TabbedPage { Children = { new ReccomendedPage(), new FoodBotSearchPage(), new DealsPage(), new FoodsPage() } }));
             pages.Add(new NavigationPage(new OrderPage()));
             pages.Add(new NavigationPage(new TabbedPage { Children = { new LoginPage(), new FacebookLoginPage(), new RegistrationPage() } }));
             pages.Add(new NavigationPage(new ContactPage()));

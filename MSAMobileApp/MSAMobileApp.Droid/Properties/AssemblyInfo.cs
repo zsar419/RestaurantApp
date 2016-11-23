@@ -34,8 +34,9 @@ using Android.App;
 [assembly: UsesPermission(Android.Manifest.Permission.WriteExternalStorage)]
 
 
-// Ignore restricted locatoin access on devices
-
+// Ignore restricted location and camera access on devices
 [assembly: UsesFeature("android.hardware.location", Required = false)]
 [assembly: UsesFeature("android.hardware.location.gps", Required = false)]
 [assembly: UsesFeature("android.hardware.location.network", Required = false)]
+[assembly: UsesFeature("android.hardware.camera", Required = false)]
+[assembly: UsesFeature("android.hardware.camera.autofocus", Required = false)]

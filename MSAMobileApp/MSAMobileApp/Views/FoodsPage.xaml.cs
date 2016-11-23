@@ -18,10 +18,7 @@ namespace MSAMobileApp.Views {
             LoadIndicator.IsRunning = true;
 
             List<Food> foodItems = await AzureManager.AzureManagerInstance.GetFoodItems();
-            Page newPage = new FoodPageGenerator(foodItems);
-
             CreateLinkableCells(foodItems);
-            //CreateLinkableCells(foodItems);
             LoadIndicator.IsRunning = false;
         }
 

@@ -1,4 +1,5 @@
 ﻿using MSAMobileApp.Models;
+using Plugin.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -80,7 +81,7 @@ namespace MSAMobileApp.Views {
                         ID = User.CurrentUserInstance.ID,
                         Name = usernameEntry.Text ?? User.CurrentUserInstance.Name,
                         Email = (emailEntry.Text == null || emailEntry.Text.Length < 1) ? User.CurrentUserInstance.Email : emailEntry.Text,
-                        Password = (passwordEntry.Text == null || passwordEntry.Text.Length < 1)? User.CurrentUserInstance.Password: passwordEntry.Text,
+                        Password = (passwordEntry.Text == null || passwordEntry.Text.Length < 1) ? User.CurrentUserInstance.Password : passwordEntry.Text,
                         Photo = User.CurrentUserInstance.Photo,
                         Phone = phoneEntry.Text ?? User.CurrentUserInstance.Phone,
                         Address = addressEntry.Text ?? User.CurrentUserInstance.Address,
@@ -113,5 +114,51 @@ namespace MSAMobileApp.Views {
             MenuPage.Logout();
             OnAppearing();
         }
+
+        /*
+        <Button Text="Take Picture" TextColor="Black" BackgroundColor="Lime" Clicked="TakePic"/>
+        <Button Text="Change Picture" TextColor="Black" BackgroundColor="Green" Clicked="SelectPicFromGallary"/>
+        <Image x:Name="image" Aspect="AspectFit"/>
+        private async void TakePic(object sender, EventArgs e) {
+            string path = "Android/data/com.xamarin.msarestaurantapp/files/Pictures";
+            string directory = "MSARestaurantApp";
+            string imageName = "FabrikamUser.jpg";
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported) {
+                await DisplayAlert("No Camera", ":( No camera avaialble.", "OK");
+                return;
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions {
+                Directory = directory,
+                Name = imageName
+            });
+
+            if (file == null) return;
+
+            await DisplayAlert("File Location", file.Path, "OK");
+
+            image.Source = ImageSource.FromStream(() => {
+                var stream = file.GetStream();
+                file.Dispose();
+                return stream;
+            });
+        }
+
+        private async void SelectPicFromGallary(object sender, EventArgs e) {
+            if (!CrossMedia.Current.IsPickPhotoSupported) {
+                await DisplayAlert("Photos Not Supported", ":( Permission not granted to photos.", "OK");
+                return;
+            }
+            var file = await CrossMedia.Current.PickPhotoAsync();
+
+            if (file == null) return;
+
+            image.Source = ImageSource.FromStream(() => {
+                var stream = file.GetStream();
+                file.Dispose();
+                return stream;
+            });
+        }
+        */
     }
 }

@@ -16,7 +16,6 @@ namespace MSAMobileApp.Views {
 
         private async void GoRegister(object sender, EventArgs e) {
             LoadIndicator.IsRunning = true;
-            
             // Perform await function call to id
             User newUser = new User() {
                 Name = usernameEntry.Text,
