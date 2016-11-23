@@ -21,7 +21,9 @@
         <Label Text="Confirm Password" />
         <Entry Text="{Binding Path=Password}" Placeholder="*Required*" IsPassword="true" x:Name="passwordEntry2" />
 
-        <Button Text="Photo (alternative authentication)" x:Name="PhotoAuth" TextColor="White" BackgroundColor="Green"/>
+        <Button Text="Photo" x:Name="PhotoAuth" TextColor="White" BackgroundColor="Green" Clicked="TakePic"/>
+        <Button Text="Select from Gallary" TextColor="Black" BackgroundColor="Green" Clicked="SelectPicFromGallary"/>
+        <Image x:Name="image" Aspect="AspectFit"/>
 
         <Label Text="Phone number"/>
         <Entry Text="{Binding Path=Phone}" x:Name="phoneEntry" />
@@ -29,7 +31,7 @@
         <Label Text="Address (deliveries)"/>
         <Entry Text="{Binding Path=Address}" x:Name="addressEntry" />
 
-        <Button Text="Register" Clicked="GoRegister"/>
+        <Button Text="Register" x:Name="RegBtn" Clicked="GoRegister"/>
         <ActivityIndicator Color="Red" IsRunning="False" x:Name ="LoadIndicator"/>
       </StackLayout>
     </ScrollView>

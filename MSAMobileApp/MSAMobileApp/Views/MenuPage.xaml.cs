@@ -74,14 +74,15 @@ namespace MSAMobileApp.Views {
             pages.Add(new NavigationPage(new SettingsPage()));
         }
 
+
         // Navigation logging in
         public static void GoHomeAfterLogin(User user) {
             User.CurrentUserInstance.Login(user);
             MenuPageInstance.currentLbl.Text = $"Logged in as {user.Name}";
             MenuPageInstance.currentLbl.TextColor = Color.Green;
 
-
             MenuPageInstance.Detail = pages[0];
+            MenuPageInstance.img.Source = User.CurrentUserInstance.Photo;
             MenuPageInstance.HomeBtn.BackgroundColor = Color.Green;
             MenuPageInstance.AuthBtn.BackgroundColor = Color.Red;
 
@@ -94,6 +95,7 @@ namespace MSAMobileApp.Views {
             User.CurrentUserInstance.Logout();
             MenuPageInstance.currentLbl.Text = "Welcome Guest";
             MenuPageInstance.currentLbl.TextColor = Color.Red;
+            MenuPageInstance.img.Source = "";
             // foreach (Food f in Food.CartInstance) Food.CartInstance.Remove(f);   
             Food.ClearCart();
             //Food.CartInstance.Clear();  // FIX ERROR (collection modified - login -> put in cart -> logout -> view cart .. should be empty..) use above^

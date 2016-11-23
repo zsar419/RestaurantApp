@@ -13,9 +13,13 @@
         <Entry Text="{Binding Path=Password}" Placeholder="New Password" IsPassword="true" x:Name="passwordEntry" />
         <Entry Text="{Binding Path=Phone}" Placeholder="Phone number" x:Name="phoneEntry" />
         <Entry Text="{Binding Path=Address}" Placeholder="Address" x:Name="addressEntry" />
-        
-        <Button Text="Confirm" TextColor="White" BackgroundColor="Blue" Clicked="Change"/>
 
+          <Button Text="Take Picture" TextColor="Black" BackgroundColor="Lime" Clicked="TakePic"/>
+          <Button Text="Select from Gallary" TextColor="Black" BackgroundColor="Green" Clicked="SelectPicFromGallary"/>
+        
+        <Image x:Name="image" Aspect="AspectFit"/>
+
+        <Button Text="Confirm" x:Name="ConfirmBtn" TextColor="White" BackgroundColor="Blue" Clicked="Change"/>
         <Button Text="Log Out" TextColor="Black" BackgroundColor="Red" Clicked="LogoutClicked"/>
 
         <ActivityIndicator Color="Red" IsRunning="False" x:Name ="LoadIndicator"/>

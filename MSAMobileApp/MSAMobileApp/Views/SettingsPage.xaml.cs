@@ -115,12 +115,10 @@ namespace MSAMobileApp.Views {
             OnAppearing();
         }
 
-        /*
-        <Button Text="Take Picture" TextColor="Black" BackgroundColor="Lime" Clicked="TakePic"/>
-        <Button Text="Change Picture" TextColor="Black" BackgroundColor="Green" Clicked="SelectPicFromGallary"/>
-        <Image x:Name="image" Aspect="AspectFit"/>
         private async void TakePic(object sender, EventArgs e) {
-            string path = "Android/data/com.xamarin.msarestaurantapp/files/Pictures";
+            ConfirmBtn.IsEnabled = false;
+            LoadIndicator.IsRunning = true;
+
             string directory = "MSARestaurantApp";
             string imageName = "FabrikamUser.jpg";
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported) {
@@ -132,33 +130,39 @@ namespace MSAMobileApp.Views {
                 Directory = directory,
                 Name = imageName
             });
-
             if (file == null) return;
 
-            await DisplayAlert("File Location", file.Path, "OK");
+            string responseID = await ApiManager.ApiManagerInstance.GetPostedImageUri(file.GetStream());
+            file.Dispose();
 
-            image.Source = ImageSource.FromStream(() => {
-                var stream = file.GetStream();
-                file.Dispose();
-                return stream;
-            });
+            // Show user
+            User.CurrentUserInstance.Photo = "http://i.imgur.com/" + responseID + ".jpg";
+            image.Source = new Uri(User.CurrentUserInstance.Photo);
+
+            LoadIndicator.IsRunning = false;
+            ConfirmBtn.IsEnabled = true;
         }
 
         private async void SelectPicFromGallary(object sender, EventArgs e) {
+            LoadIndicator.IsRunning = true;
+            ConfirmBtn.IsEnabled = false;
+
             if (!CrossMedia.Current.IsPickPhotoSupported) {
                 await DisplayAlert("Photos Not Supported", ":( Permission not granted to photos.", "OK");
                 return;
             }
             var file = await CrossMedia.Current.PickPhotoAsync();
-
             if (file == null) return;
 
-            image.Source = ImageSource.FromStream(() => {
-                var stream = file.GetStream();
-                file.Dispose();
-                return stream;
-            });
+            string responseID = await ApiManager.ApiManagerInstance.GetPostedImageUri(file.GetStream());
+            file.Dispose();
+            // Show user
+            User.CurrentUserInstance.Photo = "http://i.imgur.com/" + responseID + ".jpg";
+            image.Source = new Uri(User.CurrentUserInstance.Photo);
+
+            LoadIndicator.IsRunning = false;
+            ConfirmBtn.IsEnabled = true;
         }
-        */
+
     }
 }

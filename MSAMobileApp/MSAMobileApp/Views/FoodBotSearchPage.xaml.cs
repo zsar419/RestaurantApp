@@ -18,12 +18,25 @@ namespace MSAMobileApp.Views {
             htmlSource.Html = @"
                 <html>
                     <body>
-                        <p> TESTING </p>
-                        <iframe src='https://directline.botframework.com/embed/Siri_Custom?s=SIek1YHuatc.cwA.pto.7cXgzHVdmcFHMDW01ybUx8oWfEa0MwGH8bkNhVB1BrI' style='height: 80%; width: 100%;'></iframe>
+                        <p> Fabrikam Food's Search Bot </p>
+                        <iframe src='https://directline.botframework.com/embed/Siri_Custom?s=SIek1YHuatc.cwA.pto.7cXgzHVdmcFHMDW01ybUx8oWfEa0MwGH8bkNhVB1BrI' style='height: 70%; width: 100%;'></iframe>
                     </body>
                 </html>";
             browser.Source = htmlSource;
-            Content = browser;
+
+            Button SearchBot = new Button {
+                Text = "Apply Bot Search",
+                TextColor = Color.Yellow,
+                BackgroundColor = Color.Green,
+                Font = Font.SystemFontOfSize(NamedSize.Medium),
+                HorizontalOptions = LayoutOptions.Fill,
+            };
+            SearchBot.Clicked += async (sender2, e2) => {
+                await DisplayAlert("test", htmlSource.Html.ToString(), "OK");
+            };
+            
+            Content =  browser
+            ;
         }
     }
 }
