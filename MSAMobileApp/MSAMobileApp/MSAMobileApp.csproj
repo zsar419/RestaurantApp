@@ -71,6 +71,9 @@
     <Compile Include="Views\OrderPage.xaml.cs">
       <DependentUpon>OrderPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PlacedOrdersPage.xaml.cs">
+      <DependentUpon>PlacedOrdersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ReccomendedPage.xaml.cs">
       <DependentUpon>ReccomendedPage.xaml</DependentUpon>
     </Compile>
@@ -216,6 +219,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\FoodBotSearchPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\PlacedOrdersPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

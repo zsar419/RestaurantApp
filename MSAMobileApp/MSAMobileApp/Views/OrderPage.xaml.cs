@@ -76,23 +76,27 @@ namespace MSAMobileApp.Views {
             ActivityIndicator AI = new ActivityIndicator();
             AI.IsRunning = false;
 
-            string foodOrderIDs = "";
-            foreach (Food item in FoodDB) foodOrderIDs += (item.MenuId+" ");
+            string foodNames = "";
+            foreach (string str in FoodDB.Select(s => s.Name)) foodNames += str + " ";
+            string totPrice = FoodDB.Select(s => s.Price).Sum().ToString();
 
             orderButton.Clicked += async (sender, e) => {
                 Order newOrder = new Order() {
-                    Name = User.CurrentUserInstance.Name,
+                    FoodNames= foodNames,
                     Email = User.CurrentUserInstance.Email,
-                    FoodItemIDs = foodOrderIDs,
+                    TotalPrice = totPrice,
                     Date = DateTime.Now
                 };
                 AI.IsRunning = true;
+
                 await AzureManager.AzureManagerInstance.PlaceOrder(newOrder);
                 await DisplayAlert("Success", "Your order has been successfully placed", "OK");
+                // Generate page
                 // foreach (var f in Food.CartInstance) Food.CartInstance.Remove(f);
                 Food.CartInstance.Clear();
                 AI.IsRunning = false;
-                MenuPage.ChangePage(new NavigationPage(new OrderPage())); // FIX THIS
+
+                MenuPage.ChangePage(new NavigationPage(new TabbedPage { Children = { new OrderPage(), new PlacedOrdersPage() } })); // FIX THIS
             };
             // Build the page.
             Content = new StackLayout { Children = { header, tableView, AI, orderButton } };

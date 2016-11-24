@@ -12,13 +12,13 @@ namespace MSAMobileApp.Models {
         public string ID { get; set; }
 
         [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
+        public string FoodNames { get; set; }
 
         [JsonProperty(PropertyName = "email")]
         public string Email { get; set; }
 
         [JsonProperty(PropertyName = "menuitems")]
-        public string FoodItemIDs { get; set; }
+        public string TotalPrice { get; set; }
 
         [JsonIgnore]
         public DateTime Date { get; set; }

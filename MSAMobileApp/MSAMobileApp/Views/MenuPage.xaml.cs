@@ -68,7 +68,7 @@ namespace MSAMobileApp.Views {
         private void InitializePageLinks() {
             pages.Add(new NavigationPage(new HomePage()));
             pages.Add(new NavigationPage(new TabbedPage { Children = { new ReccomendedPage(), new FoodBotSearchPage(), new DealsPage(), new FoodsPage() } }));
-            pages.Add(new NavigationPage(new OrderPage()));
+            pages.Add(new NavigationPage(new TabbedPage { Children = { new OrderPage(), new PlacedOrdersPage() } }));
             pages.Add(new NavigationPage(new TabbedPage { Children = { new LoginPage(), new FacebookLoginPage(), new RegistrationPage() } }));
             pages.Add(new NavigationPage(new ContactPage()));
             pages.Add(new NavigationPage(new SettingsPage()));

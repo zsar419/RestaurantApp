@@ -59,9 +59,17 @@ namespace MSAMobileApp {
             return await this.foodTable.ToListAsync();
         }
 
+        // GET Orders items
+        public async Task<List<Order>> GetOrders() {
+            return await this.orderTable.ToListAsync();
+        }
         // POST Order - order creation
         public async Task PlaceOrder(Order order) {
             await this.orderTable.InsertAsync(order);
+        }
+        // Delete placed order - remove order from database with matching ID
+        public async Task CancelOrder(Order order) {
+            await this.orderTable.DeleteAsync(order);
         }
 
         // Example query
