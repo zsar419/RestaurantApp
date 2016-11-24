@@ -4,11 +4,19 @@
              x:Class="MSAMobileApp.Views.HomePage" BackgroundColor="Red" >
   <ContentPage.Content>
     <ScrollView>
-      <StackLayout Padding="0,20,0,0" Spacing="10">
-        <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
-        <ActivityIndicator Color="Red" IsRunning="False" x:Name ="LoadIndicator"/>
 
+      <StackLayout Orientation="Horizontal" VerticalOptions="Start">
+        <!-- top controls -->
+        <Label Text="Enter A Code" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" />
+      </StackLayout>
+      <StackLayout VerticalOptions="CenterAndExpand">
+        <!-- middle controls -->
+      </StackLayout>
+      <StackLayout Orientation="Horizontal" VerticalOptions="End">
+        <!-- bottom controls -->
+        <Button Text="Browse our menu" x:Name="MenuBtn" HorizontalOptions="CenterAndExpand" TextColor="White" BackgroundColor="#ff8080"/>
       </StackLayout>
     </ScrollView>
   </ContentPage.Content>
+
 </ContentPage>

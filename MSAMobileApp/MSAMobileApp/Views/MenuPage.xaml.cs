@@ -11,7 +11,7 @@ namespace MSAMobileApp.Views {
         private static MenuPage instance;
         public static List<Page> pages = new List<Page>(); // Caching
 
-        Color textColor = Color.White, backgroundColor = Color.Red, selectedColor = Color.Green;
+        Color textColor = Color.White, backgroundColor = Color.FromHex("#ff8080") , selectedColor = Color.FromHex("#ff1a1a");
 
         public MenuPage() {
             InitializeComponent();
@@ -109,11 +109,11 @@ namespace MSAMobileApp.Views {
             if(number >0 ) {
                 foreach (Button btn in MenuPageInstance.Layout.Children.Where(s => s is Button)) {
                     btn.TextColor = Color.White;
-                    btn.BackgroundColor = Color.Red;
+                    btn.BackgroundColor = Color.FromHex("#ff8080");
                 }
-                if (number == 1) MenuPageInstance.FoodBtn.BackgroundColor = Color.Green;
-                if (number == 2) MenuPageInstance.OrderBtn.BackgroundColor = Color.Green;
-                if (number == 3) MenuPageInstance.AuthBtn.BackgroundColor = Color.Green;
+                if (number == 1) MenuPageInstance.FoodBtn.BackgroundColor = Color.FromHex("#ff1a1a");
+                if (number == 2) MenuPageInstance.OrderBtn.BackgroundColor = Color.FromHex("#ff1a1a");
+                if (number == 3) MenuPageInstance.AuthBtn.BackgroundColor = Color.FromHex("#ff1a1a");
             }
         }
 

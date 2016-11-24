@@ -9,6 +9,11 @@ namespace MSAMobileApp.Views {
 
         public HomePage() {
             InitializeComponent();
+            BackgroundImage = "m1.jpg";
+
+            MenuBtn.Clicked += (sender, e) => {
+                MenuPage.ChangePage(MenuPage.pages[1], 1);
+            };
         }
 
     }
