@@ -17,6 +17,7 @@ namespace MSAMobileApp.Views {
 
         private async void GetLocationData(Object sender, EventArgs e) {
             LoadIndicator.IsRunning = true;
+            reccomendButton.IsEnabled = false;
 
             try {
                 var locator = CrossGeolocator.Current;
@@ -32,6 +33,8 @@ namespace MSAMobileApp.Views {
             } catch (Exception ex) {
                 await DisplayAlert("Failure:", $"Unable to retrieve location location, please turn on your GPS", "OK");
             }
+
+            reccomendButton.IsEnabled = true;
             LoadIndicator.IsRunning = false;
         }
 

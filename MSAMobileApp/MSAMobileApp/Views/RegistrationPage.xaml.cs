@@ -18,6 +18,8 @@ namespace MSAMobileApp.Views {
 
         private async void GoRegister(object sender, EventArgs e) {
             LoadIndicator.IsRunning = true;
+            RegBtn.IsEnabled = false;
+
             // Perform await function call to id
             User newUser = new User() {
                 Name = usernameEntry.Text,
@@ -57,6 +59,7 @@ namespace MSAMobileApp.Views {
                 MenuPage.GoHomeAfterLogin(newUser);
             }
 
+            RegBtn.IsEnabled = true;
             LoadIndicator.IsRunning = false;
         }
 

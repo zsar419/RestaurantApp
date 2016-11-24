@@ -83,12 +83,11 @@ namespace MSAMobileApp.Views {
 
             MenuPageInstance.Detail = pages[0];
             MenuPageInstance.img.Source = User.CurrentUserInstance.Photo;
-            MenuPageInstance.HomeBtn.BackgroundColor = Color.Green;
-            MenuPageInstance.AuthBtn.BackgroundColor = Color.Red;
-
+            MenuPageInstance.HomeBtn.BackgroundColor = Color.FromHex("#ff1a1a");
+            MenuPageInstance.AuthBtn.BackgroundColor = Color.FromHex("#ff8080");
             MenuPageInstance.OrderBtn.IsEnabled = true;
             MenuPageInstance.AuthBtn.IsVisible = false;
-            MenuPageInstance.SettingsBtn.BackgroundColor = Color.Red;
+            MenuPageInstance.SettingsBtn.BackgroundColor = Color.FromHex("#ff8080");
         }
 
         public static void Logout() {

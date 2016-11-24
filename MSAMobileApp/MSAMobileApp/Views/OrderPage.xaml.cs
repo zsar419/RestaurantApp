@@ -81,19 +81,23 @@ namespace MSAMobileApp.Views {
             string totPrice = FoodDB.Select(s => s.Price).Sum().ToString();
 
             orderButton.Clicked += async (sender, e) => {
+                AI.IsRunning = true;
+                orderButton.IsEnabled = false;
+
                 Order newOrder = new Order() {
                     FoodNames= foodNames,
                     Email = User.CurrentUserInstance.Email,
                     TotalPrice = totPrice,
                     Date = DateTime.Now
                 };
-                AI.IsRunning = true;
 
                 await AzureManager.AzureManagerInstance.PlaceOrder(newOrder);
                 await DisplayAlert("Success", "Your order has been successfully placed", "OK");
                 // Generate page
                 // foreach (var f in Food.CartInstance) Food.CartInstance.Remove(f);
                 Food.CartInstance.Clear();
+
+                orderButton.IsEnabled = true;
                 AI.IsRunning = false;
 
                 MenuPage.ChangePage(new NavigationPage(new TabbedPage { Children = { new OrderPage(), new PlacedOrdersPage() } })); // FIX THIS

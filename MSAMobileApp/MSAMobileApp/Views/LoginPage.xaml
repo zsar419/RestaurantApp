@@ -13,7 +13,7 @@
       <Label Text="Password" />
       <Entry Text="{Binding Path=Password}" IsPassword="true" x:Name="passwordEntry" />
 
-      <Button Text="Login" Clicked="GoLogin"/>
+      <Button Text="Login" x:Name="loginBtn" Clicked="GoLogin"/>
       <ActivityIndicator Color="Red" IsRunning="False" x:Name ="LoadIndicator"/>
 
     </StackLayout>
